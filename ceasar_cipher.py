@@ -3,13 +3,18 @@
 
 def caesar_cipher(plaintext, shift):
     ciphertext = ""
+    shift_amount = shift % 26  
+
     for char in plaintext:
-        if char.isalpha():
-            shift_amount = shift % 26
-            new_char = chr(((ord(char) - 65 + shift_amount) % 26) + 65)
+        if char.isupper(): 
+            new_char = chr(((ord(char) - ord('A') + shift_amount) % 26) + ord('A'))
             ciphertext += new_char
-        else:
+        elif char.islower():  
+            new_char = chr(((ord(char) - ord('a') + shift_amount) % 26) + ord('a'))
+            ciphertext += new_char
+        else:  
             ciphertext += char
+
     return ciphertext
 
 k = 27
